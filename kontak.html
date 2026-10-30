@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontak -Jam Dinding Klasik</title>
+<style>
+/* ================================
+   STYLE UMUM
+   ================================ */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #F6F1E7;
+  color: #2B241C;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+a {
+  color: inherit;
+}
+
+/* ================================
+   HEADER + NAVIGASI
+   ================================ */
+header {
+  background-color: #F6F1E7;
+  border-bottom: 2px solid #E2D9C6;
+}
+.baris-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  color: #2B241C;
+}
+.logo span {
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  color: #5B5142;
+  font-family: Arial, sans-serif;
+}
+nav a {
+  text-decoration: none;
+  color: #5B5142;
+  margin: 0 10px;
+  font-weight: bold;
+  padding-bottom: 4px;
+  border-bottom: 3px solid transparent;
+}
+nav a:hover {
+  color: #2B241C;
+}
+nav a.aktif {
+  color: #2B241C;
+  border-bottom: 3px solid #B8863B;
+}
+
+/* ================================
+   KONTEN UMUM
+   ================================ */
+main {
+  padding: 50px 0;
+}
+.judul-section {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.sub-section {
+  color: #5B5142;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   FOTO HEADER (SLIDESHOW)
+   ================================ */
+.foto-hero {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  border-radius: 8px;
+  background-color: #EFE7D4;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.foto-hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.foto-hero img.aktif {
+  opacity: 1;
+}
+@media (max-width: 700px) {
+  .foto-hero {
+    height: 220px;
+  }
+}
+
+/* ================================
+   HERO (HALAMAN HOME)
+   ================================ */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 10px 0 50px;
+}
+.hero-teks {
+  flex: 1;
+  min-width: 280px;
+}
+.hero-teks h1 {
+  font-size: 38px;
+  margin: 0 0 15px;
+}
+.hero-teks p {
+  color: #5B5142;
+  max-width: 420px;
+  margin-bottom: 25px;
+}
+.tombol {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.tombol-utama {
+  background-color: #B8863B;
+  color: #2B241C;
+}
+.tombol-garis {
+  background-color: transparent;
+  border: 2px solid #2B241C;
+  color: #2B241C;
+}
+.tombol-wa {
+  background-color: #3F4B3E;
+  color: white;
+  width: 100%;
+  text-align: center;
+  margin-right: 0;
+}
+
+/* ================================
+   FITUR / KEUNGGULAN
+   ================================ */
+.grid-fitur {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.kartu-fitur {
+  background-color: white;
+  border: 1px solid #E2D9C6;
+  border-radius: 8px;
+  padding: 18px;
+}
+.kartu-fitur .ikon {
+  font-size: 26px;
+}
+.kartu-fitur h3 {
+  font-size: 15px;
+  margin: 8px 0 5px;
+}
+.kartu-fitur p {
+  font-size: 13px;
+  color: #5B5142;
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .grid-fitur {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================================
+   PRODUK / KATALOG
+   ================================ */
+.label-kategori {
+  font-size: 20px;
+  margin: 35px 0 15px;
+  color: #3F4B3E;
+}
+.grid-produk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.kartu-produk {
+  background-color: white;
+  border: 1px solid #E2D9C6;
+  border-left: 6px solid #B8863B;
+  border-radius: 6px;
+  width: 250px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.kartu-produk.kayu     { border-left-color: #8C6428; }
+.kartu-produk.minimalis{ border-left-color: #2B241C; }
+.kartu-produk.vintage  { border-left-color: #A6432D; }
+.kartu-produk.unik     { border-left-color: #3F4B3E; }
+
+.kartu-produk .gambar-produk img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.kartu-produk .kategori {
+  font-size: 12px;
+  color: #8C6428;
+  font-weight: bold;
+}
+.kartu-produk h3 {
+  font-size: 17px;
+  margin: 6px 0;
+}
+.kartu-produk .deskripsi {
+  font-size: 13px;
+  color: #5B5142;
+  margin-bottom: 10px;
+}
+.harga {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+.tombol-pesan {
+  background-color: #2B241C;
+  color: white;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 5px;
+  font-size: 13px;
+  text-decoration: none;
+  text-align: center;
+  margin-top: auto;
+}
+.tombol-pesan:hover {
+  background-color: #B8863B;
+}
+
+/* ================================
+   HALAMAN ORDER
+   ================================ */
+.kotak-info {
+  background-color: #EFE7D4;
+  border: 1px solid #B8863B;
+  border-radius: 6px;
+  padding: 18px;
+  margin-bottom: 30px;
+}
+.tabel-harga {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 35px;
+  background-color: white;
+}
+.tabel-harga th, .tabel-harga td {
+  border: 1px solid #E2D9C6;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+.tabel-harga th {
+  background-color: #EFE7D4;
+}
+
+form {
+  background-color: white;
+  border: 1px solid #E2D9C6;
+  border-radius: 6px;
+  padding: 25px;
+  max-width: 480px;
+}
+form label {
+  display: block;
+  font-size: 13px;
+  color: #5B5142;
+  margin: 14px 0 5px;
+}
+form input, form textarea, form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #E2D9C6;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+}
+.pilihan-bayar label {
+  border: 1px solid #E2D9C6;
+  border-radius: 4px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #2B241C;
+}
+.tombol-submit {
+  width: 100%;
+  background-color: #3F4B3E;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ================================
+   KONTAK
+   ================================ */
+.grid-kontak {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.grid-kontak > div {
+  flex: 1;
+  min-width: 260px;
+}
+.item-kontak {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.item-kontak .ikon {
+  font-size: 22px;
+}
+.item-kontak h4 {
+  margin: 0 0 3px;
+}
+.item-kontak p {
+  margin: 0;
+  color: #5B5142;
+  font-size: 14px;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+  background-color: #EFE7D4;
+  border-top: 1px solid #E2D9C6;
+  padding: 40px 0 20px;
+}
+.grid-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.grid-footer > div {
+  flex: 1;
+  min-width: 160px;
+}
+.grid-footer h5 {
+  margin-bottom: 10px;
+}
+.grid-footer p {
+  color: #5B5142;
+  font-size: 14px;
+}
+.grid-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.grid-footer li {
+  margin-bottom: 8px;
+}
+.grid-footer a {
+  text-decoration: none;
+  color: #5B5142;
+  font-size: 14px;
+}
+.grid-footer a:hover {
+  color: #B8863B;
+}
+.bawah-footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #5B5142;
+  border-top: 1px solid #E2D9C6;
+  padding-top: 15px;
+}
+.faq-box {
+  background-color: white;
+  border: 1px solid #E2D9C6;
+  border-radius: 6px;
+  padding: 22px;
+  flex: 1;
+  min-width: 260px;
+}
+.faq-box h3 {
+  margin: 0 0 10px;
+}
+.faq-box details {
+  border-bottom: 1px solid #E2D9C6;
+  padding: 12px 0;
+}
+.faq-box summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+.faq-box details p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #5B5142;
+}
+</style>
+</head>
+<body>
+
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="container baris-header">
+    <a href="index.html" class="logo">
+      Jam Dinding Klasik
+      <span>BUATAN TANGAN, DARI BANDUNG</span>
+    </a>
+    <nav>
+      <a href="kontak.html" class="aktif">Kontak</a>
+      <a href="produk.html">Katalog</a>
+      <a href="order.html">Order</a>
+      <a href="index.html">Beranda</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2 class="judul-section">Hubungi Kami</h2>
+  <p class="sub-section">Ada pertanyaan soal ukuran, bahan, atau pengiriman? hubungi langsung!</p>
+
+  <div class="grid-kontak">
+    <div>
+      <div class="item-kontak">
+        <div class="ikon">📍</div>
+        <div><h4>Showroom</h4><p>Jl. Braga No. 409, Bandung, Jawa Barat</p></div>
+      </div>
+      <div class="item-kontak">
+        <div class="ikon">📞</div>
+        <div><h4>WhatsApp / Telepon</h4><p>087-777-777</p></div>
+      </div>
+      <div class="item-kontak">
+        <div class="ikon">✉️</div>
+        <div><h4>Email</h4><p>jamdindingklasik@gmail.com</p></div>
+      </div>
+      <div class="item-kontak">
+        <div class="ikon">🕒</div>
+        <div><h4>Jam Operasional</h4><p>Senin - Jumat, 09.00 - 17.00 WIB</p></div>
+      </div>
+      <a class="tombol tombol-wa" href="https://wa.me/6285794733820" target="_blank" style="display:inline-block; padding:12px 22px; border-radius:5px; text-decoration:none; font-weight:bold;">Chat via WhatsApp</a>
+    </div>
+
+   <div class="faq-box">
+  <h3>Pertanyaan umum</h3>
+
+  <details>
+    <summary>Berapa lama pengirimannya?</summary>
+    <p>Tergantung kota tujuan. Kami konfirmasi estimasinya lewat WhatsApp setelah pesanan masuk.</p>
+  </details>
+
+  <details>
+    <summary>Bisa request ukuran sendiri?</summary>
+    <p>Bisa, tulis ukuran dan warnanya di form Order atau chat WhatsApp.</p>
+  </details>
+
+  <details>
+    <summary>Baterai sudah termasuk?</summary>
+    <p>Sudah, baterai sudah terpasang saat jam dikirim.</p>
+  </details>
+
+  <details>
+    <summary>Boleh retur?</summary>
+    <p>Boleh kalau ada cacat produksi, hubungi kami secepatnya.</p>
+  </details>
+</div>
+  </div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="grid-footer">
+      <div>
+        <h5>🕰️ jam dinding klasik</h5>
+        <p>Terjamin Kualitasnya.</p>
+      </div>
+      <div>
+        <h5>Menu</h5>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="produk.html">Katalog</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontak</h5>
+        <ul>
+          <li><a href="tel:08">087-777-777</a></li>
+          <li><a href="mailto:jamdindingklasik@gmail.com">jamdindingklasik@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Ikuti Kami</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Tokopedia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bawah-footer">
+      &copy; 2026 Jam Dinding Klasik. Hanya untuk projek sekolah, web ini fiktif.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const fotos = document.querySelectorAll('.foto-hero img');
+  let sekarang = 0;
+
+  if (fotos.length > 1) {
+    setInterval(() => {
+      fotos[sekarang].classList.remove('aktif');
+      sekarang = (sekarang + 1) % fotos.length;
+      fotos[sekarang].classList.add('aktif');
+    }, 3000);
+  }
+  </script>
+
+</body>
+</html>

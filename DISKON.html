@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diskon - Jam Dinding Klasik</title>
+<style>
+/* ================================
+   STYLE UMUM
+   ================================ */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #F6F1E7;
+  color: #2B241C;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+a {
+  color: inherit;
+}
+
+/* ================================
+   HEADER + NAVIGASI
+   ================================ */
+header {
+  background-color: #F6F1E7;
+  border-bottom: 2px solid #E2D9C6;
+}
+.baris-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  color: #2B241C;
+}
+.logo span {
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  color: #5B5142;
+  font-family: Arial, sans-serif;
+}
+nav a {
+  text-decoration: none;
+  color: #5B5142;
+  margin: 0 10px;
+  font-weight: bold;
+  padding-bottom: 4px;
+  border-bottom: 3px solid transparent;
+}
+nav a:hover {
+  color: #2B241C;
+}
+nav a.aktif {
+  color: #2B241C;
+  border-bottom: 3px solid #B8863B;
+}
+
+/* ================================
+   KONTEN UMUM
+   ================================ */
+main {
+  padding: 50px 0;
+}
+.judul-section {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.sub-section {
+  color: #5B5142;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   PRODUK / KATALOG
+   ================================ */
+.label-kategori {
+  font-size: 20px;
+  margin: 35px 0 15px;
+  color: #3F4B3E;
+}
+.grid-produk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.kartu-produk {
+  background-color: white;
+  border: 1px solid #E2D9C6;
+  border-left: 6px solid #B8863B;
+  border-radius: 6px;
+  width: 250px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.kartu-produk .gambar-produk {
+  margin-bottom: 12px;
+}
+.kartu-produk .gambar-produk img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+.kartu-produk.kayu     { border-left-color: #8C6428; }
+.kartu-produk.minimalis{ border-left-color: #2B241C; }
+.kartu-produk.vintage  { border-left-color: #A6432D; }
+.kartu-produk.unik     { border-left-color: #3F4B3E; }
+
+.kartu-produk .gambar-produk {
+  font-size: 55px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.kartu-produk .kategori {
+  font-size: 12px;
+  color: #8C6428;
+  font-weight: bold;
+}
+.kartu-produk h3 {
+  font-size: 17px;
+  margin: 6px 0;
+}
+.kartu-produk .deskripsi {
+  font-size: 13px;
+  color: #5B5142;
+  margin-bottom: 10px;
+}
+.harga {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+.tombol-pesan {
+  background-color: #2B241C;
+  color: white;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 5px;
+  font-size: 13px;
+  text-decoration: none;
+  text-align: center;
+  margin-top: auto;
+}
+.tombol-pesan:hover {
+  background-color: #B8863B;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+  background-color: #EFE7D4;
+  border-top: 1px solid #E2D9C6;
+  padding: 40px 0 20px;
+}
+.grid-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.grid-footer > div {
+  flex: 1;
+  min-width: 160px;
+}
+.grid-footer h5 {
+  margin-bottom: 10px;
+}
+.grid-footer p {
+  color: #5B5142;
+  font-size: 14px;
+}
+.grid-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.grid-footer li {
+  margin-bottom: 8px;
+}
+.grid-footer a {
+  text-decoration: none;
+  color: #5B5142;
+  font-size: 14px;
+}
+.grid-footer a:hover {
+  color: #B8863B;
+}
+.bawah-footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #5B5142;
+  border-top: 1px solid #E2D9C6;
+  padding-top: 15px;
+}
+
+/* ================================
+   HALAMAN DISKON
+   ================================ */
+.label-diskon {
+  font-size: 20px;
+  margin: 35px 0 15px;
+  color: #3F4B3E;
+}
+.kartu-produk .gambar-produk {
+  position: relative;
+}
+.badge-diskon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #A6432D;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.harga-asli {
+  display: block;
+  font-size: 13px;
+  color: #5B5142;
+  text-decoration: line-through;
+}
+.kartu-produk .harga {
+  color: #A6432D;
+  margin-bottom: 12px;
+}
+
+</style>
+<link rel="stylesheet" href="tambahan.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="container baris-header">
+    <a href="index.html" class="logo">
+      Jam Dinding Klasik
+      <span>JAM DINDING BUATAN LOKAL</span>
+    </a>
+    <nav>
+      <a href="index.html" class="aktif">Beranda</a>
+      <a href="produk.html">Katalog</a>
+      <a href="diskon.html">Diskon</a>
+      <a href="order.html">Order</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+<div style="margin-top:50px;">
+
+  <h2 class="judul-section">Promo Diskon</h2>
+
+  <h3 class="label-diskon">Diskon 30%</h3>
+  <div class="grid-produk">
+    <div class="kartu-produk kayu">
+      <div class="gambar-produk"><img src="jam bundar klasik.png.jpeg" alt="Jati Bundar Klasik"><span class="badge-diskon">-30%</span></div>
+      <div class="kategori">Kayu</div>
+      <h3>Jati Bundar Klasik</h3>
+      <p class="deskripsi">Kayu jati solid, diameter 30cm, angka ukir.</p>
+      <span class="harga-asli">Rp 349.000</span>
+      <span class="harga">Rp 244.300</span>
+      <a class="tombol-pesan" href="https://wa.me/?text=Halo%2C%20saya%20mau%20pesan%20Jati%20Bundar%20Klasik%20(Diskon%2030%25%2C%20Rp%20244.300)" target="_blank">Pesan via WhatsApp</a>
+    </div>
+
+    <div class="kartu-produk vintage">
+      <div class="gambar-produk"><img src="loft roda gigi.png.jpeg" alt="Loft Roda Gigi"><span class="badge-diskon">-30%</span></div>
+      <div class="kategori">Vintage</div>
+      <h3>Loft Roda Gigi</h3>
+      <p class="deskripsi">Desain roda gigi terbuka.</p>
+      <span class="harga-asli">Rp 399.000</span>
+      <span class="harga">Rp 279.300</span>
+      <a class="tombol-pesan" href="https://wa.me/?text=Halo%2C%20saya%20mau%20pesan%20Loft%20Roda%20Gigi%20(Diskon%2030%25%2C%20Rp%20279.300)" target="_blank">Pesan via WhatsApp</a>
+    </div>
+  </div>
+
+  <h3 class="label-diskon">Diskon 20%</h3>
+  <div class="grid-produk">
+    <div class="kartu-produk minimalis">
+      <div class="gambar-produk"><img src="kaca bening modern.png.jpeg" alt="Kaca Bening Modern"><span class="badge-diskon">-20%</span></div>
+      <div class="kategori">Minimalis</div>
+      <h3>Kaca Bening Modern</h3>
+      <p class="deskripsi">Panel kaca bening dengan bingkai kuningan.</p>
+      <span class="harga-asli">Rp 279.000</span>
+      <span class="harga">Rp 223.200</span>
+      <a class="tombol-pesan" href="https://wa.me/?text=Halo%2C%20saya%20mau%20pesan%20Kaca%20Bening%20Modern%20(Diskon%2020%25%2C%20Rp%20223.200)" target="_blank">Pesan via WhatsApp</a>
+    </div>
+
+    <div class="kartu-produk kayu">
+      <div class="gambar-produk"><img src="mahoni kotak nordik.png.jpeg" alt="Mahoni Kotak Nordik"><span class="badge-diskon">-20%</span></div>
+      <div class="kategori">Kayu</div>
+      <h3>Mahoni Kotak Nordik</h3>
+      <p class="deskripsi">Bentuk kotak kayu mahoni gaya Skandinavia.</p>
+      <span class="harga-asli">Rp 319.000</span>
+      <span class="harga">Rp 255.200</span>
+      <a class="tombol-pesan" href="https://wa.me/?text=Halo%2C%20saya%20mau%20pesan%20Mahoni%20Kotak%20Nordik%20(Diskon%2020%25%2C%20Rp%20255.200)" target="_blank">Pesan via WhatsApp</a>
+    </div>
+  </div>
+
+  <h3 class="label-diskon">Diskon 15%</h3>
+  <div class="grid-produk">
+    <div class="kartu-produk unik">
+      <div class="gambar-produk"><img src="unik 1.png.jpeg" alt="Jam Kompas"><span class="badge-diskon">-15%</span></div>
+      <div class="kategori">Unik</div>
+      <h3>Jam Kompas</h3>
+      <p class="deskripsi">Berbentuk seperti kompas, cocok dipajang dalam ruangan anak.</p>
+      <span class="harga-asli">Rp 459.000</span>
+      <span class="harga">Rp 390.150</span>
+      <a class="tombol-pesan" href="https://wa.me/?text=Halo%2C%20saya%20mau%20pesan%20Jam%20Kompas%20(Diskon%2015%25%2C%20Rp%20390.150)" target="_blank">Pesan via WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="grid-footer">
+      <div>
+        <h5>🕰️ jam dinding klasik</h5>
+        <p>Terjamin Kualitasnya.</p>
+      </div>
+      <div>
+        <h5>Menu</h5>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="produk.html">Katalog</a></li>
+          <li><a href="diskon.html">Diskon</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontak</h5>
+        <ul>
+          <li><a href="tel:08">087-777-777</a></li>
+          <li><a href="mailto:jamdindingklasik@gmail.com">jamdindingklasik@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Ikuti Kami</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Tokopedia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bawah-footer">
+      &copy; 2026 Jam Dinding Klasik. Hanya untuk projek sekolah, web ini fiktif.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
